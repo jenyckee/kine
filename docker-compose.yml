@@ -12,3 +12,16 @@ services:
       - "8000:8000"
     depends_on:
       - db
+  client:
+    build: ./client
+    volumes:
+      - ./client:/app
+      # One-way volume to use node_modules from inside image
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - web
+    command: npm start
