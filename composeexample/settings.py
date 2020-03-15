@@ -25,15 +25,14 @@ SECRET_KEY = 'i85p#d2(x$gu+@xo))@-he2(kp2nrn95mrlo_$3hwr-a12ae6^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['web']
+ALLOWED_HOSTS = ['web', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'rest_framework',
-    'polls.apps.PollsConfig',
-    'snippets.apps.SnippetsConfig',
+    'kine.apps.KineConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
