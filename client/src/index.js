@@ -2,13 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import LoginPage from './pages/login/LoginPage'
 import store from './app/store';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <Route path="/:filter?" component={LoginPage} />
+      <Route path="/app" component={App} />
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
