@@ -5,7 +5,7 @@ import App from './App';
 import LoginPage from './pages/login/LoginPage'
 import store, { history } from './app/store';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import { ConnectedRouter } from 'connected-react-router'
 
@@ -13,7 +13,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}> 
       <Switch>
-        <Route path="/:filter?" component={LoginPage} />
+        <Route exact path="/" component={LoginPage} />
         <Route path="/app" component={App} />
       </Switch>
     </ConnectedRouter>
