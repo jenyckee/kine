@@ -3,17 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import LoginPage from './pages/login/LoginPage'
-import store from './app/store';
+import store, { history } from './app/store';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Route, Switch } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
+import { ConnectedRouter } from 'connected-react-router'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <Route path="/:filter?" component={LoginPage} />
-      <Route path="/app" component={App} />
-    </Router>
+    <ConnectedRouter history={history}> 
+      <Switch>
+        <Route path="/:filter?" component={LoginPage} />
+        <Route path="/app" component={App} />
+      </Switch>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

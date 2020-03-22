@@ -1,29 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios'
+import { push } from 'connected-react-router'
 
 export const slice = createSlice({
   name: 'login',
   initialState: {
-    firstName: '',
-    lastName: '',
-    email: ''
+
   },
   reducers: {
 
   },
 });
 
-export const { increment, decrement, incrementByAmount } = slice.actions;
+// export const {  } = slice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 export const submitLogin = values => dispatch => {
-
-  setTimeout(() => {
-    console.log(values)
-    // dispatch(incrementByAmount(amount));
-  }, 1000);
+  axios.post('/users/', values)
+    .then(response => {
+      dispatch(push('/app'))
+    }).catch(error => console.log(error))
 };
 
 // The function below is called a selector and allows us to select a value from

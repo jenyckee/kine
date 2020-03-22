@@ -14,7 +14,7 @@ class ExcerciseDetail(generics.RetrieveUpdateDestroyAPIView):
 class AssignmentList(generics.ListCreateAPIView):
     queryset = Assignment.objects.all()
     serializer_class = AssignmentSerializer
-
+        
 class PatientList(generics.ListCreateAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer

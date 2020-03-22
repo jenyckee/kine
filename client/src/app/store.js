@@ -1,10 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { reducer as formReducer } from 'redux-form'
+import { createBrowserHistory } from 'history'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+
+export const history = createBrowserHistory()
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    router: connectRouter(history),
     form: formReducer,
   },
+  middleware: [
+    ...getDefaultMiddleware(),
+    routerMiddleware(history),
+  ]
 });

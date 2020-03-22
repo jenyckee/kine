@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model=Patient
-        fields = '__all__'
+        fields = ['id', 'first_name', 'assignments']
 
 class ExcerciseSerializer(serializers.ModelSerializer):
     class Meta:
