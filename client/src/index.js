@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import LoginPage from './pages/login/LoginPage'
+import LoginPage from './features/auth/LoginPage'
+import RegisterPage from './features/auth/RegisterPage'
 import store, { history } from './app/store';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router-dom'
@@ -14,6 +15,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}> 
       <Switch>
         <Route exact path="/" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
         <Route path="/app" component={App} />
       </Switch>
     </ConnectedRouter>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 
-let LoginForm = props => {
+let RegisterForm = props => {
   const { handleSubmit } = props
   return (
     <form onSubmit={handleSubmit}>
@@ -22,9 +22,9 @@ let LoginForm = props => {
   )
 }
 
-LoginForm = reduxForm({
+RegisterForm = reduxForm({
   // a unique name for the form
-  form: 'login'
-})(LoginForm)
+  form: 'register'
+})(RegisterForm)
 
-export default LoginForm
+export default RegisterForm

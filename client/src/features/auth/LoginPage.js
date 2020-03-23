@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import { useDispatch } from 'react-redux';
-import { submitLogin } from './loginSlice';
+import { submitLogin } from './authSlice';
 
 function LoginPage() {
   
