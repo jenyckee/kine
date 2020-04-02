@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from kine.models import Patient, Excercise, Assignment
+from kine.models import Profile, Excercise, Assignment
 from django.contrib.auth.models import User
 
-class PatientSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Patient
-        fields = ['id', 'first_name', 'assignments']
+        model=Profile
+        fields = ['first_name', 'last_name', 'assignments', 'email']
 
 class ExcerciseSerializer(serializers.ModelSerializer):
     class Meta:

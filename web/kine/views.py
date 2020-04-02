@@ -1,5 +1,5 @@
-from .models import Patient, Excercise, Assignment
-from .serializers import PatientSerializer, ExcerciseSerializer, AssignmentSerializer
+from .models import Profile, Excercise, Assignment
+from .serializers import ProfileSerializer, ExcerciseSerializer, AssignmentSerializer
 from rest_framework import generics
 from django.contrib.auth.models import User
 
@@ -16,9 +16,9 @@ class AssignmentList(generics.ListCreateAPIView):
     serializer_class = AssignmentSerializer
         
 class PatientList(generics.ListCreateAPIView):
-    queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
 class PatientDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
