@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from kine.models import Profile, Excercise, Assignment
+from profile.models import Profile, Excercise, Assignment
 from django.contrib.auth.models import User
 
 class ProfileSerializer(serializers.ModelSerializer):

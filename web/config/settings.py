@@ -33,7 +33,8 @@ ALLOWED_HOSTS = ['web', 'localhost']
 INSTALLED_APPS = [
     'rest_framework',
     'djoser',
-    'kine.apps.KineConfig',
+    'profile.apps.ProfileConfig',
+    'patient.apps.PatientConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
