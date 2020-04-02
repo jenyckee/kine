@@ -19,9 +19,6 @@ user_detail = ProfileViewSet.as_view({
 urlpatterns = [
     url(r'users/(?P<pk>[0-9]+)$', user_detail, name='user_detail'),
     url(r'users$', user_list, name='user_list'),
-    # path('exercises/', views.ExcerciseList.as_view()),
-    # path('exercises/<int:pk>/', views.ExcerciseDetail.as_view()),
-    # path('assignments/', views.AssignmentList.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

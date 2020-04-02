@@ -34,6 +34,8 @@ urlpatterns = [
     # path('', include('profile.urls')),
     url(r'^api/v1/', include('profile.urls')),
     url(r'^api/v1/', include('patient.urls')),
+    url(r'^api/v1/', include('assignment.urls')),
+    url(r'^api/v1/', include('exercise.urls')),
 
     #path to djoser end points
     path('auth/', include('djoser.urls')),

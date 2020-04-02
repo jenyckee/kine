@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'djoser',
     'profile.apps.ProfileConfig',
     'patient.apps.PatientConfig',
+    'exercise.apps.ExerciseConfig',
+    'assignment.apps.AssignmentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
