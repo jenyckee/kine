@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'profile.apps.ProfileConfig',
-    'patient.apps.PatientConfig',
     'exercise.apps.ExerciseConfig',
     'assignment.apps.AssignmentConfig',
     'django.contrib.admin',
