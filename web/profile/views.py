@@ -1,12 +1,10 @@
-from .models import Profile
-from .serializers import ProfileSerializer
-from rest_framework import generics
-from django.contrib.auth.models import User
+  
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
+from .models import User
+from .serializers import UserSerializer
 
 
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()

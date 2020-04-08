@@ -22,16 +22,36 @@ export const { setToken } = slice.actions;
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
-export const submitLogin = values => dispatch => {
-  axios.post('/auth/jwt/create/', values)
-    .then(response => {
+export const submitLogin = ({ username, password }) => dispatch => {
+  axios.post('/rest-auth/login/', {
+    username,
+    password
+  })
+    .then(res => {
       dispatch(push('/app'))
-      dispatch(setToken(response.data))
+      const user = {
+        token: res.data.key,
+        username,
+        userId: res.data.user,
+        is_student: res.data.user_type.is_student,
+        is_teacher: res.data.user_type.is_teacher,
+        expirationDate: new Date(new Date().getTime() + 3600 * 1000)
+      };
+      localStorage.setItem("user", JSON.stringify(user));
+
     }).catch(error => console.log(error))
 };
 
-export const submitRegister = values => dispatch => {
-  axios.post('/auth/users/', values)
+export const submitRegister = ({username, email, password, is_patient=true}) => dispatch => {
+  const user = {
+    username,
+    email,
+    password1: password,
+    password2: password,
+    is_patient,
+    is_therapist: !is_patient
+  }
+  axios.post('/rest-auth/registration/', user)
     .then(response => {
       dispatch(push('/'))
     }).catch(error => console.log(error))

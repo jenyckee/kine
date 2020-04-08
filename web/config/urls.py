@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers, serializers, viewsets
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.conf.urls import url, include
 
 from . import views
@@ -36,9 +36,10 @@ urlpatterns = [
     url(r'^api/v1/', include('assignment.urls')),
     url(r'^api/v1/', include('exercise.urls')),
 
-    #path to djoser end points
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
+    path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+
+    path('users/', include('profile.urls')),
 
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
