@@ -42,6 +42,14 @@ export const submitLogin = ({ username, password }) => dispatch => {
     }).catch(error => console.log(error))
 };
 
+export const submitLogout = () => dispatch => {
+  axios.post('/rest-auth/logout/')
+    .then(response => {
+      console.log(response)
+      dispatch(push('/'))
+    })
+}
+
 export const submitRegister = ({username, email, password, is_patient=true}) => dispatch => {
   const user = {
     username,

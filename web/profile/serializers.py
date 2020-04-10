@@ -3,8 +3,17 @@ from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
-from .models import User
+from .models import User, Patient, Therapist
 
+class TherapistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Therapist
+        fields = ('user', 'patients')
+
+class PatientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Patient
+        fields = ['user', 'assignments']
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,6 +47,14 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.is_therapist = self.cleaned_data.get('is_therapist')
         user.save()
         adapter.save_user(request, user, self)
+        if user.is_patient:
+            patient = Patient()
+            patient.user = user
+            patient.save()
+        else:
+            therapist = Therapist()
+            therapist.user = user
+            therapist.save()
         return user
 
 

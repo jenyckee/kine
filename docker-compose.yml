@@ -17,7 +17,7 @@ services:
     volumes:
       - ./client:/app
       # One-way volume to use node_modules from inside image
-      - ./client/node_modules:/app/node_modules
+      # - ./client/node_modules:/app/node_modules
     ports:
       - "3000:3000"
     environment:
