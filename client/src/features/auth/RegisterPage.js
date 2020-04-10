@@ -12,7 +12,11 @@ function RegisterPage() {
   }
 
   return (
-    <RegisterForm onSubmit={submit} />
+    <div className="auth-wrapper">
+      <div className="auth-inner">
+        <RegisterForm onSubmit={submit} />
+      </div>
+    </div>
   )
 }
 

@@ -12,7 +12,11 @@ function LoginPage() {
   }
 
   return (
-    <LoginForm onSubmit={submit} />
+    <div className="auth-wrapper">
+      <div className="auth-inner">
+        <LoginForm onSubmit={submit} />
+      </div>
+    </div>
   )
 }
 
