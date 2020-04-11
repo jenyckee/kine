@@ -5,23 +5,47 @@ import { push } from 'connected-react-router'
 export const slice = createSlice({
   name: 'auth',
   initialState: {
-    refreshToken: null,
-    accessToken: null
+    user: null,
   },
   reducers: {
-    setToken: (state, action) => {
-      state.accessToken = action.payload.access
-      state.refreshToken = action.payload.refresh
+    setUser: (state, action) => {
+      state.user = action.payload
+    },
+    logout: (state, action) => {
+      localStorage.removeItem("user");
+      state.user = null
     }
   },
 });
 
-export const { setToken } = slice.actions;
+export const { setUser, tryAutoSignIn, logout } = slice.actions;
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
+export const authCheckState = () => dispatch => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user === undefined || user === null) {
+    dispatch(logout());
+  } else {
+    const expirationDate = new Date(user.expirationDate);
+    if (expirationDate <= new Date()) {
+      dispatch(logout());
+    } else {
+      dispatch(setUser(user));
+      dispatch(
+        checkAuthTimeout(
+          (expirationDate.getTime() - new Date().getTime()) / 1000
+        )
+      );
+    }
+  }
+};
+
+export const checkAuthTimeout = expirationTime => dispatch => {
+  setTimeout(() => {
+    dispatch(logout());
+  }, expirationTime * 1000);
+};
+
+
 export const submitLogin = ({ username, password }) => dispatch => {
   axios.post('/rest-auth/login/', {
     username,
@@ -38,7 +62,7 @@ export const submitLogin = ({ username, password }) => dispatch => {
         expirationDate: new Date(new Date().getTime() + 3600 * 1000)
       };
       localStorage.setItem("user", JSON.stringify(user));
-
+      dispatch(setUser(res.data))
     }).catch(error => console.log(error))
 };
 
@@ -68,7 +92,6 @@ export const submitRegister = ({username, email, password, is_patient=true}) => 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectAccessToken = state => state.accessToken;
-export const selectRefreshToken = state => state.refreshToken;
+export const selectUser = state => state.user;
 
 export default slice.reducer;

@@ -10,7 +10,7 @@ export default configureStore({
   reducer: {
     router: connectRouter(history),
     form: formReducer,
-    register: authReducer,
+    auth: authReducer,
   },
   middleware: [
     ...getDefaultMiddleware(),

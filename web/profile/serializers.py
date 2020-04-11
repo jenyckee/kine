@@ -10,10 +10,12 @@ class TherapistSerializer(serializers.ModelSerializer):
         model = Therapist
         fields = ('user', 'patients')
 
+
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
         fields = ['user', 'assignments']
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import TherapistPage from './pages/TherapistPage'
 import LoginPage from './features/auth/LoginPage'
 import RegisterPage from './features/auth/RegisterPage'
 import store, { history } from './app/store';
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Route exact path="/" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/app" component={App} />
+        <Route path="/therapist" component={TherapistPage} />
       </Switch>
     </ConnectedRouter>
   </Provider>,
