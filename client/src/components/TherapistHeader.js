@@ -1,11 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { submitLogout } from '../features/auth/authSlice';
-import { Link } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 function Header() {
   
   const dispatch = useDispatch();
+  const match = useRouteMatch();
 
   const logout = () => {
     dispatch(submitLogout())
@@ -16,8 +17,14 @@ function Header() {
       <div className="container">
         <div className="collapse navbar-collapse" >
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <Link to={'/patients'}>Patients</Link>
+            <li className="nav-item">
+              <Link to={`${match.url}`}>Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={`${match.url}/patients`}>Patients</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={`${match.url}/exercises`}>Exercises</Link>
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">

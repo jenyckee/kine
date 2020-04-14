@@ -2,24 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import TherapistPage from './pages/TherapistPage'
 import LoginPage from './features/auth/LoginPage'
 import RegisterPage from './features/auth/RegisterPage'
 import store, { history } from './app/store';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import { ConnectedRouter } from 'connected-react-router'
 import './custom.scss';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}> 
+    <ConnectedRouter history={history}>
       <Switch>
-        <Route exact path="/" component={LoginPage} />
-        <Route path="/register" component={RegisterPage} />
         <Route path="/app" component={App} />
-        <Route path="/therapist" component={TherapistPage} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/" component={LoginPage} />
+        <Redirect to="/" />
       </Switch>
     </ConnectedRouter>
   </Provider>,
