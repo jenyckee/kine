@@ -4,23 +4,42 @@ from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
 from .models import User, Patient, Therapist
-
-class TherapistSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Therapist
-        fields = ('user', 'patients')
-
-
-class PatientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Patient
-        fields = ['user', 'assignments']
+from exercise.serializers import ExerciseSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'username', 'password', 'is_patient', 'is_therapist')
+        fields = ('id', 'email', 'username', 'is_patient', 'is_therapist', 'first_name', 'last_name')
+
+class PatientSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+    class Meta:
+        model = Patient
+        fields = ('id', 'user', 'assignments', 'name')
+    
+    def get_name(self, obj): 
+        user = UserSerializer(obj.user).data
+        return user['first_name'] + user['last_name']
+
+class TherapistSerializer(serializers.ModelSerializer):
+    exercises = serializers.SerializerMethodField()
+    patients = serializers.SerializerMethodField()
+
+    user = UserSerializer() 
+    class Meta:
+        model = Therapist
+        level = 1
+        fields = ('id', 'user', 'patients', 'exercises')
+
+    def get_exercises(self, obj):
+        exercises = ExerciseSerializer(obj.exercises.all(), many=True).data
+        return exercises
+
+    def get_patients(self, obj):
+        patients = PatientSerializer(obj.patients.all(), many=True).data
+        return patients
+
 
 
 class CustomRegisterSerializer(RegisterSerializer):

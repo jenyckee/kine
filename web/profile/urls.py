@@ -9,12 +9,12 @@ from .views import UserViewSet, PatientViewSet, TherapistViewSet
 #     'post': 'create'
 # })
 
-# user_detail = ProfileViewSet.as_view({
-#     'get': 'retrieve',
-#     'put': 'update',
-#     'patch': 'partial_update',
-#     'delete': 'destroy'
-# })
+patient_detail = PatientViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
 
 patient_list = PatientViewSet.as_view({
     'get': 'list',
@@ -26,11 +26,18 @@ therapist_list = TherapistViewSet.as_view({
     'post': 'create'
 })
 
+therapist_detail = TherapistViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 urlpatterns = [
-    # url(r'users/(?P<pk>[0-9]+)$', user_detail, name='user_detail'),
-    # url(r'users$', user_list, name='user_list'),
+    url(r'patients/(?P<pk>[0-9]+)$', patient_detail, name='patient_detail'),
     url(r'patients$', patient_list, name='patient_list'),
-    url(r'therapists', therapist_list, name='therapist_list')
+    url(r'therapists/(?P<pk>[0-9]+)$', therapist_detail, name='therapist_detail'),
+    url(r'therapists$', therapist_list, name='therapist_list')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
