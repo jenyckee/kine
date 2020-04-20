@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'profile',
     'exercise',
     'assignment',
-
 ]
 
 SITE_ID = 1

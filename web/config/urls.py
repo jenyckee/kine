@@ -22,7 +22,7 @@ from django.conf.urls import url, include
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
+# router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
 # Wire up our API using automatic URL routing.
@@ -31,15 +31,14 @@ urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
 
-    # path('', include('profile.urls')),
-    url(r'^api/v1/', include('profile.urls')),
-    url(r'^api/v1/', include('assignment.urls')),
-    url(r'^api/v1/', include('exercise.urls')),
+    
+    path('', include('profile.urls')),
+    path('', include('assignment.urls')),
+    path('', include('exercise.urls')),
 
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
 
-    path('users/', include('profile.urls')),
 
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

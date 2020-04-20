@@ -75,14 +75,14 @@ export const submitLogout = () => dispatch => {
     })
 }
 
-export const submitRegister = ({username, email, password, is_patient=true}) => dispatch => {
+export const submitRegister = ({username, email, password}) => dispatch => {
   const user = {
     username,
     email,
     password1: password,
     password2: password,
-    is_patient,
-    is_therapist: !is_patient
+    is_patient: false,
+    is_therapist: true,
   }
   axios.post('/rest-auth/registration/', user)
     .then(response => {

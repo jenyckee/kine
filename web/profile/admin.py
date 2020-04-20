@@ -3,8 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 
-from .models import User, Patient, Therapist
-
+from .models import User
 
 class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
@@ -27,7 +26,5 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email', 'username')
     ordering = ('email',)
 
-admin.site.register(Therapist)
-admin.site.register(Patient)
 admin.site.register(User, UserAdmin)
 # admin.site.unregister(Group)

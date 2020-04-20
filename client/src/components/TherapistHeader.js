@@ -14,24 +14,24 @@ function Header() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
+      {/* <div className="container"> */}
         <div className="collapse navbar-collapse" >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={`${match.url}`}>Home</Link>
+              <Link className="nav-link" to={`${match.url}`}>Home</Link>
             </li>
             <li className="nav-item">
-              <Link to={`${match.url}/patients`}>Patients</Link>
+              <Link className="nav-link" to={`${match.url}/patients`}>Patients</Link>
             </li>
             <li className="nav-item">
-              <Link to={`${match.url}/exercises`}>Exercises</Link>
+              <Link className="nav-link" to={`${match.url}/exercises`}>Exercises</Link>
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
             <li><span className="nav-link" onClick={logout}>Logout</span></li>
           </ul>
         </div>
-      </div>
+      {/* </div> */}
     </nav>
   )
 }

@@ -12,12 +12,14 @@ function TherapistApp() {
   return (
     <div>
       <TherapistHeader></TherapistHeader>
-      <Switch>
-        <Route path={`${path}/patients/:patientId`} component={PatientDetail}></Route>
-        <Route path={`${path}/patients`} component={Patients}></Route>
-        <Route path={`${path}/exercises`} component={Exercises}></Route>
-        <Route path={path} component={TherapistHome}></Route>
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route path={`${path}/patients/:patientId`} component={PatientDetail}></Route>
+          <Route path={`${path}/patients`} component={Patients}></Route>
+          <Route path={`${path}/exercises`} component={Exercises}></Route>
+          <Route path={path} component={TherapistHome}></Route>
+        </Switch>
+      </div>
     </div>
   )
 }
