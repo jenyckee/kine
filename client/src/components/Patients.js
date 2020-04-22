@@ -20,23 +20,58 @@ function Patients() {
   const renderUserList = () => {
     if (!users.length) return null
     return users.map(patient => (
-      <li key={patient.id}>{patient.first_name + " " + patient.last_name}<button onClick={() => dispatch(createPatient(user, patient))}>Add!</button></li>
+      <li className="list-group-item d-flex justify-content-between align-items-center" key={patient.id}>
+        <div>
+          <h6 className="my-0">{patient.first_name + " " + patient.last_name}</h6>
+        </div>
+        <button className="btn btn-primary" onClick={() => dispatch(createPatient(user, patient))}>Add!</button>
+      </li>
     ))
   }
 
   const renderPatientList = () => {
     if (!patients.length) return <p>fetching</p>
-    return patients.map(patient => (
-      <Link key={patient.id} to={`${match.url}/${patient.id}`}><li>{patient.user.first_name + " " + patient.user.last_name}</li></Link>
-    ))
+    return (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+        {patients.map(patient => (
+          <tr key={patient.id}>
+            <th>
+              {patient.user.id }
+            </th>
+            <th>
+              <Link to={`${match.url}/${patient.id}`}>
+                {patient.user.first_name + " " + patient.user.last_name}
+              </Link>
+            </th>
+          </tr>
+        ))}
+        </tbody>
+      </table>
+    )
   }
   
   return (
-    <ul>
-      <SearchPatients></SearchPatients>
-      {renderUserList()}
-      {renderPatientList()}
-    </ul>
+    <div>
+      <div className="my-4">
+        <SearchPatients></SearchPatients>
+      </div>
+      <div className="my-4">
+        <ul className="list-group">
+          {renderUserList()}
+        </ul>
+      </div>
+      <h1>My Patients</h1>
+      <div className="my-4">
+        {renderPatientList()}
+      </div>
+    </div>
   )
 }
 

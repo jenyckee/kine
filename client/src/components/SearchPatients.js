@@ -13,8 +13,11 @@ function SearchPatients() {
   }, [dispatch, searchString])
 
   return (
-    <div>
-      <input onChange={e => setSearchString(e.target.value)} value={searchString} type="text"></input>
+    <div className="input-group flex-nowrap">
+      <input 
+        class="form-control"
+        placeholder="Search patients"
+        onChange={e => setSearchString(e.target.value)} value={searchString} type="text"></input>
     </div>
   )
 }
