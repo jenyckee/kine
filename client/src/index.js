@@ -9,7 +9,8 @@ import { Provider } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import { ConnectedRouter } from 'connected-react-router'
-import './custom.scss';
+
+import './custom.scss'
 
 ReactDOM.render(
   <Provider store={store}>

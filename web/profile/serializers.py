@@ -38,14 +38,6 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.is_therapist = self.cleaned_data.get('is_therapist')
         user.save()
         adapter.save_user(request, user, self)
-        if user.is_patient:
-            patient = Patient()
-            patient.user = user
-            patient.save()
-        else:
-            therapist = Therapist()
-            therapist.user = user
-            therapist.save()
         return user
 
 

@@ -14,8 +14,8 @@ function SearchPatients() {
 
   return (
     <div className="input-group flex-nowrap">
-      <input 
-        class="form-control"
+      <input
+        className="form-control"
         placeholder="Search patients"
         onChange={e => setSearchString(e.target.value)} value={searchString} type="text"></input>
     </div>

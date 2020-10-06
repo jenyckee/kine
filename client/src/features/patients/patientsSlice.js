@@ -24,6 +24,15 @@ export const slice = createSlice({
     },
     fetchPatientSuccess: (state, action) => {
       state.patient = action.payload
+    },
+    fetchExerciseSuccess: (state, action) => {
+      state.exercise = action.payload
+    },
+    postAssignemtSuccess: (state, action) => {
+      state.patient.assignments = [...state.patient.assignments, action.payload.id]
+    },
+    deleteAssignmentSuccess: (state, action) => {
+      state.patient.assignments = state.patient.assignments.filter(a => a !== action.payload)
     }
   },
 });
@@ -31,9 +40,12 @@ export const slice = createSlice({
 export const { 
   fetchUsersSuccess, 
   fetchExercisesSuccess, 
+  fetchExerciseSuccess,
   createPatientSucces, 
   fetchPatientsSucces, 
-  fetchPatientSuccess
+  fetchPatientSuccess,
+  postAssignemtSuccess,
+  deleteAssignmentSuccess,
 } = slice.actions;
 
 export const createPatient = (user, patient) => dispatch => {
@@ -46,6 +58,21 @@ export const createPatient = (user, patient) => dispatch => {
   })
 }
 
+export const deleteAssignment = (id) => dispatch => {
+  Axios.delete(`/assignments/${id}`).then(_ => {
+    dispatch(dispatch(deleteAssignmentSuccess(id)))
+  })
+}
+
+export const postAssignment = (patient, exercise) => dispatch => {
+  Axios.post('/assignments/', {
+    completed: false,
+    exercise: exercise.id,
+    owner: patient.id
+  }).then(response => {
+    dispatch(postAssignemtSuccess(response.data))
+  })
+}
 
 export const fetchUsers = ({ query }) => dispatch => {
   Axios.get(`/users/?full_name=${query}`).then(response => {
@@ -59,9 +86,14 @@ export const fetchExercises = ({ userId }) => dispatch => {
   })
 }
 
+export const fetchExerciseDetail = (id) => dispatch => {
+  Axios.get(`/exercises/${id}`).then(response => {
+    dispatch(fetchExerciseSuccess(response.data))
+  })
+}
+
 export const fetchPatientDetail = (id) => dispatch => {
   Axios.get(`/patients/${id}`).then(response => {
-    console.log(response)
     dispatch(fetchPatientSuccess(response.data))
   })
 }
@@ -74,6 +106,7 @@ export const fetchPatients = ({ userId }) => dispatch => {
 
 export const selectUsers = state => state.patients.users;
 export const selectExercises = state => state.patients.exercises
+export const selectExercise = state => state.patients.exercise
 export const selectPatients = state => state.patients.patients
 export const selectPatient = state => state.patients.patient
 

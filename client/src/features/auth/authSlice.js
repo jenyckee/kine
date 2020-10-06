@@ -60,7 +60,6 @@ export const submitLogin = ({ username, password }) => dispatch => {
         is_therapist: res.data.user_type.is_therapist,
         expirationDate: new Date(new Date().getTime() + 3600 * 1000)
       };
-      console.log(user);
       localStorage.setItem("user", JSON.stringify(user));
       dispatch(setUser(res.data))
     }).catch(error => console.log(error))
