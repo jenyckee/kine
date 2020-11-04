@@ -16,10 +16,10 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route path="/app" component={App} />
         <Route path="/register" component={RegisterPage} />
-        <Route path="/" component={LoginPage} />
-        <Redirect to="/" />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/" component={App} />
+        <Redirect to="/login" />
       </Switch>
     </ConnectedRouter>
   </Provider>,

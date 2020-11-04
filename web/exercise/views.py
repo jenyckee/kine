@@ -1,5 +1,5 @@
 from exercise.models import Exercise, Patient
-from exercise.serializers import ExerciseSerializer, PatientSerializer
+from exercise.serializers import ExerciseSerializer, PatientSerializer, PatientDetailSerializer
 from rest_framework import generics
 
 class ExerciseList(generics.ListCreateAPIView):
@@ -25,10 +25,10 @@ class PatientList(generics.ListCreateAPIView):
         queryset = Patient.objects.all()
         therapist_id = self.request.query_params.get('therapist_id', None)
         if therapist_id is not None:
-            queryset = queryset.filter(therapist__id=therapist_id)
+            queryset = queryset.filter(therapist__id=therapist_id, user__is_patient=True)
         return queryset
 
 
 class PatientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+    serializer_class = PatientDetailSerializer

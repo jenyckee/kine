@@ -56,7 +56,6 @@ function Patients() {
       </table>
     )
   }
-  
   return (
     <div>
       <div className="my-4">

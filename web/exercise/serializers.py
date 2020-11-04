@@ -16,4 +16,13 @@ class PatientSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Patient
+        fields = ('id', 'user_id', 'user', 'complaints', 'therapist')
+
+
+class PatientDetailSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    user_id = serializers.PrimaryKeyRelatedField(source='user',  queryset=User.objects.all(), write_only=True)
+    
+    class Meta:
+        model = Patient
         fields = ('id', 'user_id', 'user', 'complaints', 'therapist', 'assignments')

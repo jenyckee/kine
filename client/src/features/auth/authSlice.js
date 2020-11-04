@@ -51,7 +51,7 @@ export const submitLogin = ({ username, password }) => dispatch => {
     password
   })
     .then(res => {
-      dispatch(push('/app'))
+      dispatch(push('/'))
       const user = {
         token: res.data.key,
         username,
@@ -70,7 +70,7 @@ export const submitLogout = () => dispatch => {
     .then(response => {
       localStorage.removeItem("user");
       dispatch(logout())
-      dispatch(push('/'))
+      dispatch(push('/login'))
     })
 }
 
