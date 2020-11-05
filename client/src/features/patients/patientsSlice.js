@@ -17,7 +17,7 @@ export const slice = createSlice({
       state.exercises = action.payload
     },
     createPatientSucces: (state, action) => {
-      state.patients = [...state.patients, action.payload]
+      state.patients = [...state.patients, action.payload.data]
     },
     fetchPatientsSucces: (state, action) => {
       state.patients = action.payload
