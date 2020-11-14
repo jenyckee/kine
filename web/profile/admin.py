@@ -8,7 +8,7 @@ from .models import User
 class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
-            'fields': ('email', 'username', 'is_patient', 'is_therapist', 'password1', 'password2')
+            'fields': ('email', 'is_patient', 'is_therapist', 'password1', 'password2')
         }),
         ('Permissions', {
             'fields': ('is_superuser', 'is_staff')
@@ -16,14 +16,14 @@ class UserAdmin(BaseUserAdmin):
     )
     fieldsets = (
         (None, {
-            'fields': ('email', 'username', 'is_patient', 'is_therapist', 'password')
+            'fields': ('email', 'is_patient', 'is_therapist', 'password')
         }),
         ('Permissions', {
             'fields': ('is_superuser', 'is_staff')
         })
     )
-    list_display = ['email', 'username', 'is_patient', 'is_therapist']
-    search_fields = ('email', 'username')
+    list_display = ['email', 'is_patient', 'is_therapist']
+    search_fields = ('email', 'last_name')
     ordering = ('email',)
 
 admin.site.register(User, UserAdmin)

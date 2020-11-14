@@ -6,6 +6,7 @@ from assignment.serializers import AssignmentSerializer
 class AssignmentList(generics.ListCreateAPIView):
     queryset = Assignment.objects.all()
     serializer_class = AssignmentSerializer
+    filterset_fields = ['owner']
 
 class AssignmentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Assignment.objects.all()

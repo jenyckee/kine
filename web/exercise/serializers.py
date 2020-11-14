@@ -13,6 +13,7 @@ class ExerciseSerializer(serializers.ModelSerializer):
 class PatientSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     user_id = serializers.PrimaryKeyRelatedField(source='user',  queryset=User.objects.all(), write_only=True)
+    therapist = UserSerializer()
     
     class Meta:
         model = Patient

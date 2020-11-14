@@ -7,4 +7,4 @@ class User(AbstractUser):
     is_patient = models.BooleanField()
 
     def __str__(self):
-        return self.username
+        return self.email

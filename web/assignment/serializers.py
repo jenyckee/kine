@@ -3,7 +3,7 @@ from assignment.models import Assignment
 from exercise.serializers import ExerciseSerializer
 
 class AssignmentSerializer(serializers.ModelSerializer):
-    # exercise = ExerciseSerializer()
+    exercise = ExerciseSerializer()
 
     class Meta:
         model = Assignment

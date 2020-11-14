@@ -20,6 +20,7 @@ class ExerciseDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class PatientList(generics.ListCreateAPIView):
     serializer_class = PatientSerializer
+    filterset_fields = ['user']
 
     def get_queryset(self):
         queryset = Patient.objects.all()
