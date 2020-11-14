@@ -1,9 +1,9 @@
 import React from 'react';
 
-function TherapistHome() {
+function Home() {
   return (
     <div>Home</div>
   )
 }
 
-export default TherapistHome
+export default Home

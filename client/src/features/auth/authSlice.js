@@ -44,17 +44,16 @@ export const checkAuthTimeout = expirationTime => dispatch => {
   }, expirationTime * 1000);
 };
 
-
-export const submitLogin = ({ username, password }) => dispatch => {
+export const submitLogin = ({ email, password }) => dispatch => {
   axios.post('/rest-auth/login/', {
-    username,
+    email: email,
     password
   })
     .then(res => {
       dispatch(push('/'))
       const user = {
         token: res.data.key,
-        username,
+        email,
         userId: res.data.user,
         is_patient: res.data.user_type.is_patient,
         is_therapist: res.data.user_type.is_therapist,
@@ -74,9 +73,8 @@ export const submitLogout = () => dispatch => {
     })
 }
 
-export const submitRegister = ({username, email, password}) => dispatch => {
+export const submitRegister = ({ email, password}) => dispatch => {
   const user = {
-    username,
     email,
     password1: password,
     password2: password,

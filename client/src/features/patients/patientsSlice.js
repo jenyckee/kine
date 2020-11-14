@@ -7,7 +7,10 @@ export const slice = createSlice({
     exercises: [],
     patients: [],
     users: [],
-    patient: null
+    patient: null,
+    therapists: [],
+    defaultTherapist: 0,
+    assignments: []
   },
   reducers: {
     fetchUsersSuccess: (state, action) => {
@@ -33,6 +36,15 @@ export const slice = createSlice({
     },
     deleteAssignmentSuccess: (state, action) => {
       state.patient.assignments = state.patient.assignments.filter(a => a !== action.payload)
+    },
+    fetchTherapistsSucces: (state, action) => {
+      state.therapists = action.payload
+    },
+    setdefaultTherapist: (state, action) => {
+      state.defaultTherapist = action.payload
+    },
+    fetchPatientAssignmentsSucces: (state, action) => {
+      state.assignments = action.payload
     }
   },
 });
@@ -46,7 +58,17 @@ export const {
   fetchPatientSuccess,
   postAssignemtSuccess,
   deleteAssignmentSuccess,
+  fetchTherapistsSucces,
+  setPatientRelation,
+  setdefaultTherapist,
+  fetchPatientAssignmentsSucces,
 } = slice.actions;
+
+export const fetchPatientAssignments = (owner) => dispatch => {
+  Axios.get(`/assignments/?owner=${owner}`).then(response => {
+    dispatch(fetchPatientAssignmentsSucces(response.data.results))
+  })
+}
 
 export const createPatient = (user, patient) => dispatch => {
   Axios.post('/patients/', {
@@ -104,10 +126,19 @@ export const fetchPatients = ({ userId }) => dispatch => {
   })
 }
 
+export const fetchTherapists = ({ userId }) => dispatch => {
+  Axios.get(`/patients/?user=${userId}`).then(response => {
+    dispatch(fetchTherapistsSucces(response.data.results))
+  })
+}
+
 export const selectUsers = state => state.patients.users;
 export const selectExercises = state => state.patients.exercises
 export const selectExercise = state => state.patients.exercise
 export const selectPatients = state => state.patients.patients
 export const selectPatient = state => state.patients.patient
+export const selectTherapists = state => state.patients.therapists
+export const selectDefaultTherapist = state => state.patients.defaultTherapist
+export const selectAssignments = state => state.patients.assignments
 
 export default slice.reducer

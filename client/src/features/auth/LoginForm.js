@@ -7,8 +7,8 @@ let LoginForm = props => {
     <form onSubmit={handleSubmit}>
       <h3>Sign in</h3>
       <div className="form-group">
-        <label htmlFor="firstName">Username</label>
-        <Field name="username" component="input" type="text" className="form-control"/>
+        <label htmlFor="firstName">Email</label>
+        <Field name="email" component="input" type="text" className="form-control"/>
       </div>
       <div className="form-group">
         <label htmlFor="password">Password</label>

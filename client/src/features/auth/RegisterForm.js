@@ -7,11 +7,7 @@ let RegisterForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <h3>Sign Up</h3>
-      <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <Field name="username" component="input" type="text" className="form-control" placeholder="Username" />
-      </div>
-
+      
       <div className="form-group">
           <label htmlFor="email">Email address</label>
           <Field name="email" component="input" type="email" className="form-control" placeholder="Enter email" />
